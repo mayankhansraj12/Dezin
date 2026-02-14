@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    /* #09090b - almost black */
+    --foreground: 0 0% 98%;
+    /* #fafafa */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    /* #27272a */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    /* #a1a1aa */
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    @apply antialiased font-sans;
+    font-family: 'Inter', sans-serif;
+    cursor: default;
+  }
+}
+
+/* VS Code-style scrollbar for code editor */
+.code-editor-scroll::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.code-editor-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-editor-scroll::-webkit-scrollbar-thumb {
+  background: rgba(121, 121, 121, 0.4);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.code-editor-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 100, 100, 0.7);
+  background-clip: content-box;
+}
+
+.code-editor-scroll::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Ensure cursor is default (arrow) on entire scrollbar area */
+.chat-history-scroll::-webkit-scrollbar,
+.chat-input-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  cursor: default;
+}
+
+.chat-history-scroll::-webkit-scrollbar-track,
+.chat-input-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  cursor: default;
+}
+
+.chat-history-scroll::-webkit-scrollbar-thumb,
+.chat-input-scroll::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 170, 0.3);
+  border-radius: 0px;
+  cursor: default;
+}
+
+.chat-history-scroll::-webkit-scrollbar-thumb:hover,
+.chat-input-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(161, 161, 170, 0.5);
+  cursor: default;
+}
+
+.chat-history-scroll::-webkit-scrollbar-corner,
+.chat-input-scroll::-webkit-scrollbar-corner {
+  background: transparent;
+}
