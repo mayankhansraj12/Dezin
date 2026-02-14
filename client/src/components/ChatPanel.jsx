@@ -31,7 +31,8 @@ const ChatPanel = () => {
 
         // Real API call
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            // Use relative path for API calls to support both local proxy and production
+            const API_URL = import.meta.env.VITE_API_URL || '';
             const response = await fetch(`${API_URL}/api/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
