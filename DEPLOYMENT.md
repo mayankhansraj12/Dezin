@@ -1,85 +1,44 @@
-# Dezin AI - Deployment Guide
+# Dezin AI - Two-Project Vercel Deployment
 
-## 🚀 Recommended Deployment Options
-
-### Option 1: Vercel (Easiest & Recommended) ⭐
-
-This project is pre-configured for Vercel with a `vercel.json` file that handles both the frontend and backend serverless functions automatically.
-
-#### Steps:
-1. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   # Create a repo on GitHub, then:
-   git remote add origin https://github.com/your-username/your-repo-name.git
-   git push -u origin main
-   ```
-
-2. **Deploy via Vercel Dashboard**
-   - Go to [vercel.com/new](https://vercel.com/new)
-   - Import your GitHub repository
-   - **Environment Variables**: Add `GEMINI_API_KEY` (copy value from your local `.env`)
-   - **Framework Preset**: Vercel should auto-detect "Vite" for the frontend.
-   - Click **Deploy**
-
-3. **That's it!** 
-   - Vercel will build the frontend
-   - It will deploy the backend as Serverless Functions (handled by `vercel.json`)
-   - Your app will be live at `https://your-project.vercel.app`
+We will deploy the **Backend** and **Frontend** as two separate projects on Vercel. This is a robust and clean setup.
 
 ---
 
-### Option 2: Render (For Persistent Backend)
+## Part 1: Deploy Backend (Project A)
 
-Use this if you prefer a traditional server over serverless functions.
+1. **Push to GitHub** (IMPORTANT: Ensure you pushed the new `server/vercel.json` I just created).
+2. Go to [vercel.com/new](https://vercel.com/new).
+3. Import **Dezin**.
+4. **Configure Project**:
+   - **Project Name**: `dezin-backend`
+   - **Root Directory**: Click "Edit" and select `server`.
+   - **Framework Preset**: Other (Default).
+   - **Environment Variables**:
+     - `GEMINI_API_KEY`: *(Your Key)*
+5. Click **Deploy**.
+6. **Copy Payload URL**: Once deployed, copy the domain (e.g., `https://dezin-backend.vercel.app`).
 
-#### 1. Backend Service (Web Service)
-- **New Web Service** → Connect Repo
-- **Root Directory**: `server`
-- **Build Command**: `npm install`
-- **Start Command**: `node index.js`
-- **Environment Variables**:
-  - `GEMINI_API_KEY`: (your key)
-  - `NODE_ENV`: `production`
-  - `FRONTEND_URL`: `https://your-frontend-app.onrender.com` (add this AFTER creating frontend)
-
-#### 2. Frontend Service (Static Site)
-- **New Static Site** → Connect Repo
-- **Root Directory**: `client`
-- **Build Command**: `npm install && npm run build`
-- **Publish Directory**: `dist`
-- **Environment Variables**:
-  - `VITE_API_URL`: `https://your-backend-service.onrender.com` (URL from step 1)
+*Note: Visiting the URL directly might show "Cannot GET /", but `/api` or `/health` should work.*
 
 ---
 
-## 🔑 Environment Variables Checklist
+## Part 2: Deploy Frontend (Project B)
 
-| Variable | Description | Where to set |
-|----------|-------------|--------------|
-| `GEMINI_API_KEY` | Your Google AI API Key | Server (Vercel/Render) |
-| `NODE_ENV` | Set to `production` | Server (Auto on Vercel) |
-| `FRONTEND_URL` | Your frontend domain | Server (For CORS security) |
-| `VITE_API_URL` | Your backend URL | Client (Only if using Render) |
+1. Go to [vercel.com/new](https://vercel.com/new).
+2. Import **Dezin** (Again).
+3. **Configure Project**:
+   - **Project Name**: `dezin-client`
+   - **Root Directory**: Click "Edit" and select `client`.
+   - **Framework Preset**: Vite (Auto-detected).
+   - **Environment Variables**:
+     - `VITE_API_URL`: `https://dezin-backend.vercel.app` *(The URL from Part 1)*
+4. Click **Deploy**.
 
 ---
 
-## 🛠️ Project Structure for Reference
+## Summary
+- **Backend Project**: Runs `server/` code as serverless functions (handled by `server/vercel.json`).
+- **Frontend Project**: Runs `client/` code as a static site (handled by Vite).
+- **Connection**: Frontend talks to Backend via `VITE_API_URL`.
 
-```
-Dezin/
-├── vercel.json      # Handles Vercel routing (api -> server, * -> client)
-├── package.json     # Root scripts
-├── client/          # Frontend (Vite + React)
-│   └── dist/        # Build output
-└── server/          # Backend (Express)
-    └── index.js     # Server entry point
-```
-
-## 🐛 Troubleshooting
-
-- **CORS Errors?** Check `FRONTEND_URL` env var on your server.
-- **API Errors?** Check `GEMINI_API_KEY` on your server.
-- **Build Fails?** Ensure you are running `npm install` in the correct directory.
+You are all set! 🚀
