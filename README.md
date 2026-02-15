@@ -2,6 +2,9 @@
 
 **Make Smooth UI Easily** - An AI-powered React component generator using Google's Gemini API.
 
+🔗 **Live Demo:** [https://dezin.vercel.app](https://dezin.vercel.app)  
+📂 **Repository:** [https://github.com/mayankhansraj12/Dezin](https://github.com/mayankhansraj12/Dezin)
+
 ## ✨ Features
 
 - 🤖 **AI-Powered UI Generation** - Natural language to React components
@@ -21,7 +24,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/mayankhansraj12/Dezin.git
    cd Dezin
    ```
 
