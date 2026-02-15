@@ -49,7 +49,7 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV !== 'production') {
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`🚀 Dezin AI Server running on port ${PORT}`);
     console.log(`📍 Health check: http://localhost:${PORT}/health`);
